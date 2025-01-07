@@ -1,0 +1,3 @@
+1º Proyectp Base								(16/12)
+2º. Se crea imagen Docker de la API y se enlaza con imagen Docker postgres. 	(27/12)
+3º  Se agrega Swagger para documentación y prueba de la API			(06/01)
