@@ -1,8 +1,7 @@
 import requests
 from rest_framework.response import Response
 
-#GITHUB_TOKEN = "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" #token for user rosendomendoza
-#GITHUB_USER = "rosendomendoza"
+
 GITHUB_API_URL = "https://api.github.com"
 GITHUB_BASE_URL = "https://github.com"
 
