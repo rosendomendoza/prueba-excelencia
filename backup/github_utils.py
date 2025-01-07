@@ -1,7 +1,6 @@
 import requests
 from rest_framework.response import Response
 
-
 GITHUB_API_URL = "https://api.github.com"
 GITHUB_BASE_URL = "https://github.com"
 
