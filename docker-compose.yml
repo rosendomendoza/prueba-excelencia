@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  web:
+    build:
+      context: .
+      args:
+        DATABASE_URL: postgres://postgres:postgres@db:5432/postgres
+    container_name: drf_api
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py collectstatic --no-input &&
+             gunicorn --bind 0.0.0.0:8000 bjumper_test.wsgi:application"
+    volumes:
+      - .:/app
+      - ./staticfiles:/app/staticfiles
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DEBUG=True
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
+
+volumes:
+  postgres_data:
